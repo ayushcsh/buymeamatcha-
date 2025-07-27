@@ -1,0 +1,40 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: 'Circular';
+  src: url('/font/circular-medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Circular-bold';
+  src: url('/font/circular-medium.ttf') format('truetype');
+  font-weight: 800;
+  font-style: bold;
+}
+ .font-circular1{
+  font-family: 'Circular-bold', sans-serif;
+}
+.font-circular{
+  font-family: 'Circular', sans-serif;
+}
+
+body{
+    background-color: #FAF7F2;
+}
+
+
+.custom-progress-bar {
+  background-color: #85A662; /* Change progress bar color */
+  height: 4px !important;
+}
+.custom-progress-bar {
+  background: #85A662 !important; /* A nice matcha green */
+}
+.custom-toast {
+    text-decoration: none !important;
+    border-bottom: 2px solid #85A662 !important; /* Replace with your color */
+    background-color: #85A662 !important; /* Optional: match your theme */
+    color: #333333 !important; /* Optional: match your text color */
+}
