@@ -177,7 +177,7 @@ const Paymentpage = ({ username }) => {
                                     height={30}
                                 />
                                 <span className='break-words text-left w-full'>
-                                    {payment.name} donated ₹{Number.parseInt(payment.amount / 100)} with message {payment.message}
+                                    {payment.name} donated ₹{Number.parseInt(payment.amount)} with message {payment.message}
                                 </span>
                             </li>
                         ))}
