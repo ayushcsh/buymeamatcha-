@@ -161,14 +161,14 @@ const Paymentpage = ({ username }) => {
             <div className='thisis flex flex-col md:flex-row justify-center items-center w-[90%] md:w-[80%] h-auto mx-auto mt-[40px] md:mt-[120px] gap-5 mb-[120px]'>
                 <div className='flex flex-col w-full md:w-1/2 bg-white rounded-[30px] h-[55vh] order-2 md:order-1'>
                     <h1 className='font-bold text-[25px] mt-[20px] flex justify-center items-center text-[#85A662]'> Top 10 supporters</h1>
-                    <div className='flex flex-col list-none mt-[15px] ml-[40px] gap-1 overflow-y-scroll scrollbar-hide overflow-x-hidden text-wrap'>
+                    <div className='flex flex-col list-none mt-[15px] ml-[40px] gap-1 h-[50vh] overflow-y-scroll scrollbar-hide overflow-x-hidden text-wrap'>
                         {payments.length === 0 && (
                             <p className='text-gray-500 flex mr-8 mt-[130px] justify-center items-center'>
                                 No supporters yet
                             </p>
                         )}
                         {payments.map((payment, index) => (
-                            <li key={payment.id} className='flex gap-2 w-[90%] items-start'>
+                            <li key={payment.id} className='flex gap-2 w-[90%] items-start '>
                                 <Image
                                     className='rounded-full shrink-0'
                                     src="/icons8-avatar.gif"
@@ -192,12 +192,12 @@ const Paymentpage = ({ username }) => {
                             <input onChange={handlechange} name="message" value={paymentform.message} type="text" className='border border-[#f0f0f0] bg-[#f0f0f0] rounded-[10px] p-3 w-[70vw] md:w-[33vw]' placeholder='enter message' />
                             <input onChange={handlechange} name="amount" value={paymentform.amount} type="text" className='border border-[#f0f0f0] bg-[#f0f0f0] rounded-[10px] p-3 w-[70vw] md:w-[33vw]' placeholder='enter amount' />
                             <div>
-                                <button onClick={() => pay(Number.parseInt(paymentform.amount) * 100)} className='bg-[#85A662] text-white p-2 rounded-[10px] w-[70vw] md:w-[33vw] disabled:opacity-50' disabled={!paymentform.name || !paymentform.message || !paymentform.amount}>Pay</button>
+                                <button onClick={() => pay(Number.parseInt(paymentform.amount) * 100)} className='bg-[#85A662] text-white p-2 rounded-[10px] w-[70vw] md:w-[33vw] disabled:opacity-50 cursor-pointer' disabled={!paymentform.name || !paymentform.message || !paymentform.amount}>Pay</button>
                             </div>
                             <div className='flex gap-2 '>
-                                <button className='bg-[#85A662] text-white p-1.5 text-[16px] md:p-2 rounded-[10px] disabled:opacity-50' disabled={!paymentform.name || !paymentform.message} onClick={() => pay(10000)}>Pay ₹100</button>
-                                <button className='bg-[#85A662] text-white p-1.5 text-[16px] md:p-2 rounded-[10px] disabled:opacity-50' disabled={!paymentform.name || !paymentform.message} onClick={() => pay(2000)}>Pay ₹200</button>
-                                <button className='bg-[#85A662] text-white p-1.5  text-[16px] md:p-2 rounded-[10px] disabled:opacity-50' disabled={!paymentform.name || !paymentform.message} onClick={() => pay(5000)}>Pay ₹500</button>
+                                <button className='bg-[#85A662] text-white p-1.5 text-[16px] md:p-2 rounded-[10px] disabled:opacity-50 cursor-pointer' disabled={!paymentform.name || !paymentform.message} onClick={() => pay(10000)}>Pay ₹100</button>
+                                <button className='bg-[#85A662] text-white p-1.5 text-[16px] md:p-2 rounded-[10px] disabled:opacity-50 cursor-pointer' disabled={!paymentform.name || !paymentform.message} onClick={() => pay(2000)}>Pay ₹200</button>
+                                <button className='bg-[#85A662] text-white p-1.5  text-[16px] md:p-2 rounded-[10px] disabled:opacity-50 cursor-pointer' disabled={!paymentform.name || !paymentform.message} onClick={() => pay(5000)}>Pay ₹500</button>
 
                             </div>
                         </div>
