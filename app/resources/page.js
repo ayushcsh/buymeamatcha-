@@ -10,7 +10,7 @@ const resources = () => {
                 <h1 className='md:text-4xl text-2xl font-bold font-circular mb-[20px] text-[#576d40]'>Need Assistance?</h1>
 
                 <h1 className='md:text-2xl text-xl font-bold font-circular mb-[10px] mt-[10px]'>Getting Started</h1>
-                <div className='mb-[10px] h-[43vh] w-[80vw] md:h-[35vh] md:w-[60vw] bg-white rounded-[20px] p-4 shadow-md text-[16px] md:text-[20px] font-circular flex flex-col justify-center items-center'>
+                <div className='mb-[10px] h-[45vh] w-[80vw] md:h-[35vh] md:w-[60vw] bg-white rounded-[20px] p-4 shadow-md text-[16px] md:text-[20px] font-circular flex flex-col justify-center items-center'>
                     <p>New to Matcha? Here’s how to set up your page, share your link, and start receiving love.</p>
                     <ul className="list-none pl-5 space-y-2 text-sm text-gray-700 list-normal mt-[15px]">
                         <li>🎉 <strong>Create your Matcha page</strong> — it takes less than 2 minutes!</li>
@@ -23,7 +23,7 @@ const resources = () => {
 
                 <div className='mb-[10px] mt-[20px]'>
                     <h2 className="md:text-2xl text-xl font-bold text-black-900 mb-2">Creator Toolkit</h2>
-                    <div className="text-center  mb-[10px] h-[33vh] w-[80vw] md:h-[35vh] md:w-[60vw] bg-white rounded-[20px] p-4 shadow-md text-[16px] md:text-[20px] font-circular flex flex-col justify-center items-center">
+                    <div className="text-center  mb-[10px] h-[35vh] w-[80vw] md:h-[35vh] md:w-[60vw] bg-white rounded-[20px] p-4 shadow-md text-[16px] md:text-[20px] font-circular flex flex-col justify-center items-center">
 
                         <p className="text-gray-700 mb-6">Resources to make your Matcha link pop!</p>
 
