@@ -4,6 +4,7 @@ import payment from "@/models/payment"
 import connectDB from "@/db/connectDB"
 import mongoose from "mongoose"
 import User from "@/models/user"
+import { unstable_noStore as noStore } from 'next/cache';
 
 export const createorder = async(amount , to_username , payment_form) =>{
     await connectDB();
@@ -48,6 +49,7 @@ export const fetchuser = async (username) => {
 };
 
 export const fetchpayment = async (username) => {
+    noStore();
     await connectDB();
     const payments = await payment.find({ to_user: username , done : true }).sort({ amount: -1 }).limit(10).lean(); // Use lean() for plain objects
     return payments;
