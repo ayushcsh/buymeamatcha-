@@ -25,6 +25,30 @@ const Paymentpage = ({ username }) => {
         getdata();
     }, [username]);
 
+    // In Paymentpage.js, add this code block
+
+    useEffect(() => {
+        // 1. Check if the URL says the payment was done
+        if (searchParams.get("paymentdone")) {
+
+            // 2. Show a "Payment Successful!" pop-up message
+            toast('Payment Successful!', {
+                position: "top-right",
+                autoClose: 5000,
+                // ... other toast options
+            });
+
+            // 3. THIS IS THE MOST IMPORTANT LINE:
+            // It tells Next.js to get the new, updated list of payments from your database.
+            router.refresh();
+
+            // 4. (Optional but good) Clean up the URL
+            const url = new URL(window.location);
+            url.searchParams.delete('paymentdone');
+            router.replace(url.toString(), { scroll: false });
+        }
+    }, [searchParams, router]); // Dependency array is very important
+
 
 
     const handlechange = (e) => {
