@@ -32,8 +32,19 @@ export const POST = async (req) => {
     else {
         // update the payment status 
         const update = await payment.findOneAndUpdate({ oid: body.razorpay_order_id }, { done: true }, { new: true });
-        return NextResponse.redirect(`${process.env.NEXTAUTH_URL_INTERNAL}/${p.to_user}?paymentdone=true`)
-        // console.log(`${process.env.NEXTAUTH_URL_INTERNAL}/profile/${p.to_user}`);
-
+        
+        // Get the base URL with proper fallback
+        const baseUrl = process.env.NEXTAUTH_URL_INTERNAL || process.env.NEXTAUTH_URL || process.env.VERCEL_URL || 'http://localhost:3000';
+        const redirectUrl = `${baseUrl}/${p.to_user}?paymentdone=true`;
+        
+        // Validate URL before redirecting
+        try {
+            new URL(redirectUrl);
+            return NextResponse.redirect(redirectUrl);
+        } catch (error) {
+            console.error('Invalid redirect URL:', redirectUrl, error);
+            // Fallback to a safe redirect
+            return NextResponse.redirect(`/${p.to_user}?paymentdone=true`);
+        }
     }
 }
