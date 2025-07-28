@@ -68,6 +68,9 @@ const Paymentpage = ({ username }) => {
         let dbpayments = await fetchpayment(username);
         setpayments(dbpayments);
         console.log(dbpayments, u);
+
+        console.log("--- getdata() FINISHED ---");
+        console.log("Payments received from server:", dbpayments);
     }
 
 
