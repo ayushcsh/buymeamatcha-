@@ -71,6 +71,7 @@ const Paymentpage = ({ username }) => {
 
         console.log("--- getdata() FINISHED ---");
         console.log("Payments received from server:", dbpayments);
+        console.log("Payments received from server:", payments);
     }
 
 
