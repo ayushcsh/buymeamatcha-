@@ -56,6 +56,9 @@ export const POST = async (req) => {
     await Payment.findOneAndUpdate({ oid: razorpay_order_id }, { done: true });
     console.log("Database update complete.");
 
+
+    revalidatePath(`/${p.to_user}`);
+
     // 7. Redirect the user back to the profile page with a success message
     const redirectUrl = `${process.env.NEXTAUTH_URL}/${p.to_user}?paymentdone=true`;
     console.log("Redirecting to:", redirectUrl);
