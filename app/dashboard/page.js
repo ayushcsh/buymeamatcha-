@@ -40,7 +40,7 @@ const Dashboard = () => {
     };
 
     getdata();
-  }, [session?.user?.username , router]);
+  }, [session, router]);
   
 
  useEffect(() => {
