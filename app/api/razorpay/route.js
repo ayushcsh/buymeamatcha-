@@ -3,6 +3,7 @@ import { validatePaymentVerification } from "razorpay/dist/utils/razorpay-utils"
 import Payment from "@/models/payment"; // Corrected import name to match standard convention
 import User from "@/models/user";
 import connectDB from "@/db/connectDB";
+import { revalidatePath } from "next/cache";
 
 export const POST = async (req) => {
     await connectDB();
