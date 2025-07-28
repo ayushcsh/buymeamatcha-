@@ -1,84 +1,59 @@
 import NextAuth from 'next-auth'
-// import AppleProvider from 'next-auth/providers/apple'
-// import FacebookProvider from 'next-auth/providers/facebook'
-// import GoogleProvider from 'next-auth/providers/google'
-// import EmailProvider from 'next-auth/providers/email'
 import GitHubProvider from 'next-auth/providers/github'
-import mongoose, { connect } from 'mongoose'
+import mongoose from 'mongoose'
 import User from '@/models/user'
 import connectDB from '@/db/connectDB'
 
 const handler = NextAuth({
   providers: [
-    // OAuth authentication providers...
+    // Your GitHub provider configuration
     GitHubProvider({
       clientId: process.env.GITHUB_ID,
       clientSecret: process.env.GITHUB_SECRET
     }),
-    // AppleProvider({
-    //   clientId: process.env.APPLE_ID,
-    //   clientSecret: process.env.APPLE_SECRET
-    // }),
-    // FacebookProvider({
-    //   clientId: process.env.FACEBOOK_ID,
-    //   clientSecret: process.env.FACEBOOK_SECRET
-    // }),
-    // GoogleProvider({
-    //   clientId: process.env.GOOGLE_ID,
-    //   clientSecret: process.env.GOOGLE_SECRET
-    // }),
-    // // Passwordless / email sign in
-    // EmailProvider({
-    //   server: process.env.MAIL_SERVER,
-    //   from: 'NextAuth.js <no-reply@example.com>'
-    // }),
   ],
-callbacks: {
-  async signIn({ user, account, profile, email, credentials }) {
-    
-     if(account.provider == 'github'){
-      await connectDB();
-      //connect to the database 
-      const client = await mongoose.connect("mongodb://localhost:27017/buymeamatcha");
-      // check if user is exist or not if exist we do nothing but if not so we create a new schema 
-      const currentuser = await User.findOne({email: user.email})
-      if(!currentuser){
-         const newuser = new User({
-          email : user.email,
-          name : user.name,
-          username : user.name.split(" ")[0],
-         
-        })
-        await newuser.save();
-        user.name = user.name;      
+  callbacks: {
+    // This function runs when a user tries to sign in
+    async signIn({ user, account, profile }) {
+      if (account.provider === 'github') {
+        // Connect to your production database on Atlas
+        await connectDB();
+
+        // Check if the user already exists in your database
+        const currentUser = await User.findOne({ email: user.email });
+
+        // If the user doesn't exist, create a new one
+        if (!currentUser) {
+          const newUser = await User.create({
+            email: user.email,
+            username: user.email.split('@')[0], // Create a username from the email
+            name: user.name,
+            profileimage: user.image, // Save the profile image from GitHub
+            coverimage: '', // You can set a default cover image here if you want
+          });
+        }
+
+        // Allow the sign-in to proceed
+        return true;
       }
-      else{
-        user.name = currentuser.name;
+      // By default, deny sign-in for other providers if you haven't configured them
+      return false;
+    },
+
+    // This function runs to create the session object
+    async session({ session, user, token }) {
+      // Find the user in your database to get their username
+      const dbUser = await User.findOne({ email: session.user.email });
+      
+      // Add the username from your database to the session object
+      if (dbUser) {
+        session.user.username = dbUser.username;
       }
-      return true; 
-     }
-  },
-
-  // want to fetch session.user.username
-  async session({ session, token, user }) {
-    await connectDB();
-
-    if (!session.user.email) {
-      console.error("Email is missing in session.user. Check authentication provider.");
-      session.user.email = token.email || user.email; // Fallback to token or user email
+      
+      // Return the modified session object
+      return session;
     }
-
-    const dbUser = await User.findOne({ email: session.user.email });
-    if (dbUser) {
-      session.user.username = dbUser.username; // Add username to session
-    } else {
-      session.user.username = user.name.split(" ")[0]; // Fallback to first name if not found in DB
-    }
-
-    return session;
   }
-}
+});
 
-})
-
-export { handler as GET , handler as POST}
+export { handler as GET, handler as POST };
