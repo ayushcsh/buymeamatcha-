@@ -160,7 +160,7 @@ const Paymentpage = ({ username }) => {
 
             <div className='thisis flex flex-col md:flex-row justify-center items-center w-[90%] md:w-[80%] h-auto mx-auto mt-[40px] md:mt-[120px] gap-5 mb-[120px]'>
                 <div className='flex flex-col w-full md:w-1/2 bg-white rounded-[30px] h-[55vh] order-2 md:order-1'>
-                    <h1 className='font-bold text-[25px] mt-[20px] flex justify-center items-center text-[#85A662]'> Top 10 supporters</h1>
+                    <h1 className='font-bold text-[25px] mt-[20px] flex justify-center items-center text-[#85A662]'> Top supporters</h1>
                     <div className='flex flex-col list-none mt-[15px] ml-[40px] gap-1 h-[50vh] overflow-y-scroll scrollbar-hide overflow-x-hidden text-wrap'>
                         {payments.length === 0 && (
                             <p className='text-gray-500 flex mr-8 mt-[130px] justify-center items-center'>
