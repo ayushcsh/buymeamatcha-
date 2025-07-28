@@ -168,7 +168,7 @@ const Paymentpage = ({ username }) => {
                             </p>
                         )}
                         {payments.map((payment, index) => (
-                            <li key={index} className='flex gap-2 w-[90%] items-start'>
+                            <li key={payment.id} className='flex gap-2 w-[90%] items-start'>
                                 <Image
                                     className='rounded-full shrink-0'
                                     src="/icons8-avatar.gif"
