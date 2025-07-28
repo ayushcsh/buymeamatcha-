@@ -172,7 +172,7 @@ const Dashboard = () => {
               <label htmlFor="razorpaysecret">Razorpay Secret</label>
               <input name="razorpaysecret" type="text" className='border border-[#f0f0f0] bg-[#f0f0f0] rounded-[10px] p-2' value={form.razorpaysecret || ''} onChange={handleChange} />
             </div>
-            <button type="submit" className='bg-[#85A662] text-white p-2 rounded-[10px] w-[33vw] mt-[20px]'>Save Changes</button>
+            <button type="submit" className='bg-[#85A662] text-white p-2 rounded-[10px] w-[33vw] mt-[20px] cursor-pointer'>Save Changes</button>
           </div>
         </form>
       </div>

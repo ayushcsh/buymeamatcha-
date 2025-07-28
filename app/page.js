@@ -16,7 +16,7 @@ export default function Home() {
 
   <div className="start flex justify-center items-center mt-6">
     <Link href="/login">
-      <button className="font-circular text-[18px] bg-[#85A662] h-[60px] w-[180px] rounded-[50px]">
+      <button className="font-circular text-[18px] bg-[#85A662] h-[60px] w-[180px] rounded-[50px] cursor-pointer">
         Start my page
       </button>
     </Link>
