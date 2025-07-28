@@ -48,7 +48,7 @@ const Paymentpage = ({ username }) => {
 
 
     const pay = async (amount) => {
-        alert(`This payment is being started from: ${window.location.origin}`);
+        // alert(`This payment is being started from: ${window.location.origin}`);
         // create a razorpay order
         let order = await createorder(amount, username, paymentform);
         let order_id = order.id;
