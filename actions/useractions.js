@@ -51,7 +51,7 @@ export const fetchuser = async (username) => {
 export const fetchpayment = async (username) => {
     noStore();
     await connectDB();
-    const payments = await payment.find({ to_user: username , done : true }).sort({ amount: -1 }).lean(); // Use lean() for plain objects
+    const payments = await payment.find({ to_user: username , done : true }).limit(10).sort({ amount: -1 }).lean(); // Use lean() for plain objects
     return payments;
 };
 
